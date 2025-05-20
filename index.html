@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heritage Institute of Technology Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 30px;
+    }
+
+    img.logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    form {
+      display: inline-block;
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    select, input[type="text"] {
+      font-size: 16px;
+      padding: 10px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1f618d;
+    }
+
+    #resultBox {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="logo.jpeg" alt="Heritage Institute of Technology Logo" class="logo">
+
+  <h1>Heritage Institute of Technology</h1>
+  <h2>Result of Odd Semester Examination 2024-2025</h2>
+
+  <form id="resultForm">
+    <div class="form-row">
+      <select id="semester" name="semester">
+        <option value="">-- Select Semester --</option>
+        <option value="1">1st Semester</option>
+        <option value="2">2nd Semester</option>
+        <option value="3">3rd Semester</option>
+        <option value="4">4th Semester</option>
+        <option value="5">5th Semester</option>
+        <option value="6">6th Semester</option>
+        <option value="7">7th Semester</option>
+        <option value="8">8th Semester</option>
+      </select>
+
+      <input type="text" id="roll" name="roll" placeholder="Enter Roll Number">
+    </div>
+
+    <div class="buttons">
+      <button type="submit">Show Result</button>
+      <button type="button" onclick="resetForm()">Reset</button>
+      <button type="button" onclick="showCertificate()">Show Provisional Certificate</button>
+    </div>
+  </form>
+
+  <div id="resultBox"></div>
+
+  <script>
+    const resultBox = document.getElementById('resultBox');
+
+    document.getElementById('resultForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const semester = document.getElementById('semester').value;
+      const roll = document.getElementById('roll').value.trim();
+
+      if (semester === "3" && roll === "12623017007") {
+        resultBox.innerHTML = "<p class='success'><strong>Result:</strong> Passed with Distinction! 🎉</p><p><a href='reportcard.pdf' target='_blank'>Download Report Card</a></p>";
+      } else {
+        resultBox.innerHTML = "<p class='error'>❌ Invalid roll number or semester. Please check your inputs.</p>";
+      }
+    });
+
+    function resetForm() {
+      document.getElementById('semester').value = "";
+      document.getElementById('roll').value = "";
+      resultBox.innerHTML = "";
+    }
+
+    function showCertificate() {
+      resultBox.innerHTML = "<p><a href='provisional.pdf' target='_blank'>Download Provisional Certificate</a></p>";
+    }
+  </script>
+
+</body>
+</html>
